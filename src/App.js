@@ -1,10 +1,56 @@
 import logo from './assets/logo.svg';
-import checkerOn from './assets/checker-on.svg';
-import checkerOff from './assets/checker-off.svg';
+// import checkerOn from './assets/checker-on.svg';
+// import checkerOff from './assets/checker-off.svg';
 import aviaLogo from './assets/avialogo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [searchID, setSearchId] = useState();
+  const [tickets, setTickets] = useState([]);
+
+  useEffect(() => {
+    fetch('https://front-test.dev.aviasales.ru/search')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res: ', res);
+        setSearchId(res.searchID);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+  useEffect(() => {
+    if (searchID) {
+      async function subscribe() {
+        let response = await fetch('https://front-test.dev.aviasales.ru/tickets?searchId=${searchI}');
+
+        if (response.status === 502) {
+          // Статус 502 - это таймаут соединения;
+          // возможен, когда соединение ожидало слишком долго
+          // и сервер (или промежуточный прокси) закрыл его
+          // давайте восстановим связь
+          await subscribe();
+        } else if (response.status !== 200) {
+          // Какая-то ошибка, покажем её
+          console.error(response.statusText);
+          // Подключимся снова через секунду.
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await subscribe();
+        } else {
+          // Получим и покажем сообщение
+          let ticketsPart = await response.json();
+          setTickets(...tickets, ticketsPart);
+          if (!ticketsPart.stop) {
+            // И снова вызовем subscribe() для получения следующего сообщения
+            await subscribe();
+          } else {
+            console.log(tickets);
+          }
+        }
+      }
+
+      subscribe();
+    }
+  }, [searchID]);
   return (
     <div className="App">
       <div className="appWrapper">
