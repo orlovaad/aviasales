@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [searchID, setSearchId] = useState();
   const [tickets, setTickets] = useState([]);
+  const [stop, setStop] = useState(false);
 
   useEffect(() => {
     fetch('https://front-test.dev.aviasales.ru/search')
@@ -19,38 +20,31 @@ function App() {
       .catch((e) => console.log(e));
   }, []);
   useEffect(() => {
-    if (searchID) {
+    if (searchID && stop === false) {
       async function subscribe() {
-        let response = await fetch('https://front-test.dev.aviasales.ru/tickets?searchId=${searchI}');
+        let response = await fetch('https://front-test.dev.aviasales.ru/tickets?searchId=${searchID}');
 
-        if (response.status === 502) {
-          // Статус 502 - это таймаут соединения;
-          // возможен, когда соединение ожидало слишком долго
-          // и сервер (или промежуточный прокси) закрыл его
-          // давайте восстановим связь
+        if (response.status === 502 || response.status === 500) {
           await subscribe();
+        } else if (response.status === 404) {
         } else if (response.status !== 200) {
-          // Какая-то ошибка, покажем её
           console.error(response.statusText);
-          // Подключимся снова через секунду.
           await new Promise((resolve) => setTimeout(resolve, 1000));
           await subscribe();
         } else {
-          // Получим и покажем сообщение
           let ticketsPart = await response.json();
-          setTickets(...tickets, ticketsPart);
-          if (!ticketsPart.stop) {
-            // И снова вызовем subscribe() для получения следующего сообщения
-            await subscribe();
-          } else {
-            console.log(tickets);
+          setTickets([...tickets, ...ticketsPart.tickets]);
+          console.log(ticketsPart);
+          if (ticketsPart.stop) {
+            setStop(ticketsPart.stop);
           }
         }
       }
 
       subscribe();
+      console.log('tickets: ', tickets);
     }
-  }, [searchID]);
+  }, [searchID, tickets, stop]);
   return (
     <div className="App">
       <div className="appWrapper">
