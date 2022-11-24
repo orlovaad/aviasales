@@ -8,21 +8,26 @@ import { useEffect, useState } from 'react';
 function App() {
   const [searchID, setSearchId] = useState();
   const [tickets, setTickets] = useState([]);
+  const [sortTickets, setSortTickets] = useState([]);
   const [stop, setStop] = useState(false);
+
+  useEffect(() => {
+    if (stop === true) {
+      setSortTickets(tickets.slice(0, 4));
+    }
+  }, [stop, tickets]);
 
   useEffect(() => {
     fetch('https://front-test.dev.aviasales.ru/search')
       .then((res) => res.json())
-      .then((res) => {
-        console.log('res: ', res);
-        setSearchId(res.searchID);
-      })
+      .then((res) => setSearchId(res.searchID))
       .catch((e) => console.log(e));
   }, []);
+
   useEffect(() => {
     if (searchID && stop === false) {
       async function subscribe() {
-        let response = await fetch('https://front-test.dev.aviasales.ru/tickets?searchId=${searchID}');
+        let response = await fetch(`https://front-test.dev.aviasales.ru/tickets?searchId=${searchID}`);
 
         if (response.status === 502 || response.status === 500) {
           await subscribe();
@@ -34,7 +39,7 @@ function App() {
         } else {
           let ticketsPart = await response.json();
           setTickets([...tickets, ...ticketsPart.tickets]);
-          console.log(ticketsPart);
+
           if (ticketsPart.stop) {
             setStop(ticketsPart.stop);
           }
@@ -42,7 +47,6 @@ function App() {
       }
 
       subscribe();
-      console.log('tickets: ', tickets);
     }
   }, [searchID, tickets, stop]);
   return (
@@ -85,44 +89,46 @@ function App() {
             <div className="filter2__element filter2__optimal">Оптимальный</div>
           </div>
           <div className="tickets">
-            <div className="ticket">
-              <div className="ticket__header">
-                <div className="ticket__price ">13 400 P</div>
-                <div className="ticket__logo">
-                  <img src={aviaLogo} alt="" />
+            {sortTickets.map((ticket) => (
+              <div className="ticket">
+                <div className="ticket__header">
+                  <div className="ticket__price ">13 400 P</div>
+                  <div className="ticket__logo">
+                    <img src={aviaLogo} alt="" />
+                  </div>
+                </div>
+                <div className="ticket_data-wrapper">
+                  <div className="ticket_data">
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">MOW – HKT</p>
+                      <p className="ticket_data__item__value">10:45 – 08:00</p>
+                    </div>
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">В пути</p>
+                      <p className="ticket_data__item__value">21ч 15м</p>
+                    </div>
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">2 пересадки</p>
+                      <p className="ticket_data__item__value">HKG, JNB</p>
+                    </div>
+                  </div>
+                  <div className="ticket_data">
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">MOW – HKT</p>
+                      <p className="ticket_data__item__value">11:20 – 00:50</p>
+                    </div>
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">В пути</p>
+                      <p className="ticket_data__item__value">13ч 30м</p>
+                    </div>
+                    <div className="ticket_data__item">
+                      <p className="ticket_data__item__name">1 пересадкa</p>
+                      <p className="ticket_data__item__value">HKG</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="ticket_data-wrapper">
-                <div className="ticket_data">
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">MOW – HKT</p>
-                    <p className="ticket_data__item__value">10:45 – 08:00</p>
-                  </div>
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">В пути</p>
-                    <p className="ticket_data__item__value">21ч 15м</p>
-                  </div>
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">2 пересадки</p>
-                    <p className="ticket_data__item__value">HKG, JNB</p>
-                  </div>
-                </div>
-                <div className="ticket_data">
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">MOW – HKT</p>
-                    <p className="ticket_data__item__value">11:20 – 00:50</p>
-                  </div>
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">В пути</p>
-                    <p className="ticket_data__item__value">13ч 30м</p>
-                  </div>
-                  <div className="ticket_data__item">
-                    <p className="ticket_data__item__name">1 пересадкa</p>
-                    <p className="ticket_data__item__value">HKG</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
 
             <div className="ticket">
               <div className="ticket__header">
