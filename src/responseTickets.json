@@ -1,0 +1,125 @@
+{
+  "tickets": [
+    {
+      "price": 15000,
+      "carrier": "123",
+      "segments": [
+        {
+          "origin": "KUF",
+          "destination": "GOI",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["SVO", "DEL"],
+          "duration": 240
+        },
+        {
+          "origin": "GOI",
+          "destination": "KUF",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "SVO", "LED", "SVO", "VVO"],
+          "duration": 240
+        }
+      ]
+    },
+    {
+      "price": 25000,
+      "carrier": "456",
+      "segments": [
+        {
+          "origin": "SVX",
+          "destination": "VIE",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "VVO", "FRA"],
+          "duration": 280
+        },
+        {
+          "origin": "SVX",
+          "destination": "VIE",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["SPb", "FRA", "LED"],
+          "duration": 280
+        }
+      ]
+    },
+    {
+      "price": 35000,
+      "carrier": "789",
+      "segments": [
+        {
+          "origin": "VVO",
+          "destination": "FRA",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["IST", "VVO"],
+          "duration": 520
+        },
+        {
+          "origin": "VVO",
+          "destination": "FRA",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "FRA"],
+          "duration": 520
+        }
+      ]
+    },
+    {
+      "price": 45000,
+      "carrier": "789",
+      "segments": [
+        {
+          "origin": "ARN",
+          "destination": "IST",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["VVO"],
+          "duration": 320
+        },
+        {
+          "origin": "ARN",
+          "destination": "IST",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED"],
+          "duration": 320
+        }
+      ]
+    },
+    {
+      "price": 55000,
+      "carrier": "789",
+      "segments": [
+        {
+          "origin": "TRA",
+          "destination": "IST",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["FRA", "VVO"],
+          "duration": 620
+        },
+        {
+          "origin": "TRA",
+          "destination": "IST",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["FRA", "LED"],
+          "duration": 620
+        }
+      ]
+    },
+    {
+      "price": 65000,
+      "carrier": "789",
+      "segments": [
+        {
+          "origin": "FRA",
+          "destination": "SVO",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["IST", "FRA"],
+          "duration": 120
+        },
+        {
+          "origin": "TRA",
+          "destination": "IST",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "VVO"],
+          "duration": 620
+        }
+      ]
+    }
+  ],
+  "stop": true
+}
