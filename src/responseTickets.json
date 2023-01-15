@@ -1,7 +1,7 @@
 {
   "tickets": [
     {
-      "price": 15000,
+      "price": 36000,
       "carrier": "123",
       "segments": [
         {
@@ -21,6 +21,86 @@
       ]
     },
     {
+      "price": 36000,
+      "carrier": "123",
+      "segments": [
+        {
+          "origin": "KUF",
+          "destination": "GOI",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["SVO", "DEL"],
+          "duration": 290
+        },
+        {
+          "origin": "GOI",
+          "destination": "KUF",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "SVO", "LED", "SVO", "VVO"],
+          "duration": 210
+        }
+      ]
+    },
+    {
+      "price": 38000,
+      "carrier": "123",
+      "segments": [
+        {
+          "origin": "KUF",
+          "destination": "GOI",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["SVO", "DEL"],
+          "duration": 240
+        },
+        {
+          "origin": "GOI",
+          "destination": "KUF",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "SVO", "LED", "SVO", "VVO"],
+          "duration": 240
+        }
+      ]
+    },
+    {
+      "price": 28000,
+      "carrier": "123",
+      "segments": [
+        {
+          "origin": "KUF",
+          "destination": "GOI",
+          "date": "2022-01-29T10:03:47",
+          "stops": [],
+          "duration": 100
+        },
+        {
+          "origin": "GOI",
+          "destination": "KUF",
+          "date": "2022-01-29T10:03:47",
+          "stops": [],
+          "duration": 120
+        }
+      ]
+    },
+    {
+      "price": 45000,
+      "carrier": "123",
+      "segments": [
+        {
+          "origin": "KUF",
+          "destination": "GOI",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["SVO", "DEL"],
+          "duration": 390
+        },
+        {
+          "origin": "GOI",
+          "destination": "KUF",
+          "date": "2022-01-29T10:03:47",
+          "stops": ["LED", "SVO", "LED"],
+          "duration": 500
+        }
+      ]
+    },
+    {
       "price": 25000,
       "carrier": "456",
       "segments": [
@@ -28,7 +108,7 @@
           "origin": "SVX",
           "destination": "VIE",
           "date": "2022-01-29T10:03:47",
-          "stops": ["LED", "VVO", "FRA"],
+          "stops": ["LED", "VVO"],
           "duration": 280
         },
         {
