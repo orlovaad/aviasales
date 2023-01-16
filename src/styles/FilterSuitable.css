@@ -1,0 +1,31 @@
+.filter2 {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dfe5ec;
+  background-color: #ffffff;
+  grid-area: filter;
+  min-width: 502px;
+  height: 50px;
+  margin-bottom: 20px;
+  line-height: 50px;
+  border-radius: 5px;
+}
+
+.filter2__element {
+  width: calc(100% / 3);
+  text-align: center;
+  user-select: none;
+  border: 1px;
+}
+
+.filter2__element:hover {
+  background-color: #2196f3;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.filter2__element_active {
+  background-color: #2196f3;
+  color: #ffffff;
+  cursor: pointer;
+}

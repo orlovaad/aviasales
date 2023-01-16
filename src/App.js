@@ -1,20 +1,12 @@
 import logo from './assets/logo.svg';
 import FilterTransfers from './components/FilterTransfers/FilterTransfers';
-import FilterSuitable from './components/FilterSuitable';
+import FilterSuitable from './components/FilterSuitable/FilterSuitable';
 import './App.css';
 import ticketsStore from './responseTickets.json';
 import { useState } from 'react';
-import Ticket from './components/Ticket';
-import { CHEAP_FILTER_TYPE, FAST_FILTER_TYPE, OPTIMAL_FILTER_TYPE } from './components/FilterSuitable/consts';
-// import {
-//   ALL_TRANSFERS_COUNT,
-//   NULL_TRANSFERS_COUNT,
-//   ONE_TRANSFERS_COUNT,
-//   TWO_TRANSFERS_COUNT,
-//   THREE_TRANSFERS_COUNT,
-// } from './components/FilterTransfers/constsTransfers';
-import { TRANSFER_LABELS, TRANSFER_LABELS_INDEX } from './components/FilterTransfers/constsTransfers';
-import { isVisible } from '@testing-library/user-event/dist/utils';
+import Ticket from './components/Ticket/Ticket';
+import { CHEAP_FILTER_TYPE, FAST_FILTER_TYPE } from './components/FilterSuitable/constsFilterSuitable';
+import { TRANSFER_LABELS } from './components/FilterTransfers/constsFilterTransfers';
 
 function App() {
   const [filterSuitable, setFilterSuitable] = useState(CHEAP_FILTER_TYPE);
@@ -51,7 +43,6 @@ function App() {
 
   const sortTransfers = () => {
     const transfersCount = getTransfersCount();
-    console.log(transfersCount);
 
     if (transfersCount[0] === -1 || transfersCount.length === 0) {
       return [...ticketsStore.tickets].slice(0, maxCountTickets);
@@ -68,7 +59,6 @@ function App() {
             isChecked = true;
           }
         }
-        console.log(ticket, index, isChecked);
         return isChecked;
       })
 
@@ -76,7 +66,6 @@ function App() {
   };
 
   const printTickets = () => {
-    console.log(sortTransfers());
     if (filterSuitable === CHEAP_FILTER_TYPE) {
       return sortPrice(sortTransfers()).map((ticket) => <Ticket {...ticket} />);
     } else if (filterSuitable === FAST_FILTER_TYPE) {
