@@ -1,5 +1,6 @@
-import FilterSuitableElement from './Element.js';
-import { CHEAP_FILTER_TYPE, FAST_FILTER_TYPE, OPTIMAL_FILTER_TYPE } from './consts';
+import FilterSuitableElement from './FilterSuitableElement.js';
+import './FilterSuitable.css';
+import { CHEAP_FILTER_TYPE, FAST_FILTER_TYPE, OPTIMAL_FILTER_TYPE } from './constsFilterSuitable';
 
 const FILTER_LABELS = {
   [CHEAP_FILTER_TYPE]: 'Самый дешевый',

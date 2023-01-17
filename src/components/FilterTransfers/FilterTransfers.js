@@ -1,15 +1,6 @@
-// import checkerOn from '../assets/checker-on.svg';
-// import checkerOff from '../assets/checker-off.svg';
-import '../../styles/FilterTransfers.css';
+import './FilterTransfers.css';
 import TransferLabel from './TransferLabel';
-// import {
-//   ALL_TRANSFERS_COUNT,
-//   NULL_TRANSFERS_COUNT,
-//   ONE_TRANSFERS_COUNT,
-//   TWO_TRANSFERS_COUNT,
-//   THREE_TRANSFERS_COUNT,
-// } from './constsTransfers';
-import { TRANSFER_LABELS } from './constsTransfers';
+import { TRANSFER_LABELS } from './constsFilterTransfers';
 
 function FilterTransfers({ filterTransfers, setFilterTransfers }) {
   // Замыкание

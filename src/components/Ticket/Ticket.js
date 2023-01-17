@@ -1,4 +1,5 @@
-import aviaLogo from '../assets/avialogo.svg';
+import aviaLogo from '../../assets/avialogo.svg';
+import './Ticket.css';
 import Segment from './Segment.js';
 
 function Ticket({ price, carrier, segments }) {
@@ -11,7 +12,6 @@ function Ticket({ price, carrier, segments }) {
         </div>
       </div>
       <div className="ticket_data-wrapper">
-        {/* Туда и обратно*/}
         {segments.map((segment) => (
           <Segment {...segment} />
         ))}
