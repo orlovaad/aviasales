@@ -1,5 +1,5 @@
 import aviaLogo from '../../assets/avialogo.svg';
-import '../../styles/Ticket.css';
+import './Ticket.css';
 import Segment from './Segment.js';
 
 function Ticket({ price, carrier, segments }) {

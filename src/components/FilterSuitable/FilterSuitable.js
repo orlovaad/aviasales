@@ -1,5 +1,5 @@
 import FilterSuitableElement from './FilterSuitableElement.js';
-import '../../styles/FilterSuitable.css';
+import './FilterSuitable.css';
 import { CHEAP_FILTER_TYPE, FAST_FILTER_TYPE, OPTIMAL_FILTER_TYPE } from './constsFilterSuitable';
 
 const FILTER_LABELS = {

@@ -1,4 +1,4 @@
-import '../../styles/FilterTransfers.css';
+import './FilterTransfers.css';
 import TransferLabel from './TransferLabel';
 import { TRANSFER_LABELS } from './constsFilterTransfers';
 
